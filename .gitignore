@@ -1,4 +1,11 @@
 
 *.pyc
-*migrations*
+
+static
+
+db.sqlite3
+
 edms/settings.py
+
+*/migrations/*
+!*/migrations/__init__.py
