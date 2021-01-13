@@ -1,15 +1,15 @@
 
-from django.contrib import admin
+
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from core.admin import traceable, suspendable, fields
+from core.admin.base import edms_admin
 from .core import DocumentAdmin
 from ..forms.checkout import CheckoutDocumentForm
 from ..models.checkout import CheckoutDocument
 
 
-@admin.register(CheckoutDocument)
 class CheckoutDocumentAdmin(DocumentAdmin,
     traceable.TraceableAdmin,
     suspendable.SuspendableAdmin):
@@ -18,7 +18,7 @@ class CheckoutDocumentAdmin(DocumentAdmin,
         'relyon_requirement_name_link', 'apply_date']
 
     fieldsets = ((None, {
-        'fields': ('document', 'relyon_requirement', 'apply_date'),
+        'fields': ('relyon_requirement', 'document', 'apply_date'),
         }),
     )
 
@@ -38,3 +38,6 @@ class CheckoutDocumentAdmin(DocumentAdmin,
 
 
     relyon_requirement_name_link.short_description = _('申請依據 (需求單號)')
+
+
+edms_admin.register(CheckoutDocument, CheckoutDocumentAdmin)

@@ -2,9 +2,7 @@
 *.pyc
 
 static
-
 db.sqlite3
-
 edms/settings.py
 
 */migrations/*

@@ -18,8 +18,9 @@ from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from core.admin.base import edms_admin
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', edms_admin.urls),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,11 +1,12 @@
 
 from typing import Iterable, List
 
-from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from core.admin import traceable, suspendable, fields
+from core.admin.base import edms_admin
+
 from .core import DocumentAdmin, DocumentTabularInline
 from ..forms.online import OnlineDocumentForm
 from ..models.online import OnlineDocument
@@ -21,7 +22,6 @@ class OnlineAttachmentInline(DocumentTabularInline,
     readonly_fields = ('document_name_link',)
     
 
-@admin.register(OnlineDocument)
 class OnlineDocumentAdmin(DocumentAdmin,
     traceable.TraceableAdmin,
     suspendable.SuspendableAdmin):
@@ -77,3 +77,6 @@ class OnlineDocumentAdmin(DocumentAdmin,
     
 
     relyon_requirement_name_link.short_description = _('申請依據 (需求單號)')
+
+
+edms_admin.register(OnlineDocument, OnlineDocumentAdmin)

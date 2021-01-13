@@ -1,15 +1,15 @@
 
-from django.contrib import admin
+
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from core.admin import traceable, suspendable, fields
+from core.admin.base import edms_admin
 from .core import DocumentAdmin
 from ..forms.online_attach import OnlineAttachmentForm
 from ..models.online_attach import OnlineAttachment
 
 
-@admin.register(OnlineAttachment)
 class OnlineAttachmentAdmin(DocumentAdmin,
     traceable.TraceableAdmin,
     suspendable.SuspendableAdmin):
@@ -22,3 +22,6 @@ class OnlineAttachmentAdmin(DocumentAdmin,
     )
 
     form = OnlineAttachmentForm
+
+
+edms_admin.register(OnlineAttachment, OnlineAttachmentAdmin)
