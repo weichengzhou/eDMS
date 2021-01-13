@@ -1,0 +1,4 @@
+
+*.pyc
+*migrations*
+edms/settings.py
