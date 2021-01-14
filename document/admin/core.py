@@ -14,7 +14,7 @@ class DocumentTabularInline(admin.TabularInline):
     
     def document_name_link(self, obj):
         if obj.document_seq is None:
-            return None
+            return '-'
         else:
             document_url = fields.get_reverse_link(
                 'admin:document_onlineattachment_change',

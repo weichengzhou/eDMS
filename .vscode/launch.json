@@ -8,10 +8,11 @@
             "name": "Python: 目前檔案",
             "type": "python",
             "request": "launch",
-            "args": ["runserver", "--noreload"],
+            // "args": ["runserver", "--noreload"],
+            "args": ["ldap_sync_users"],
             "program": "C:\\Users\\Rocky\\GoogleDrive\\Frank\\Github\\eDMS\\manage.py",
             "console": "integratedTerminal",
-            "python": "C:\\Users\\Rocky\\GoogleDrive\\Rock\\env\\web_env\\Scripts\\python.exe"
+            "justMyCode": false,
         }
     ]
 }
