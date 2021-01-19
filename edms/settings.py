@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # AD Authentication
 AUTHENTICATION_BACKENDS = [
-    'ldap.auth.LDAPBackend',
+    'core.ldap.auth.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend'
 ]
 
