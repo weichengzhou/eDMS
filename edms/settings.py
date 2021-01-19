@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import environ
 
+from core import ldap
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_python3_ldap',
     'document',
+    'core.ldap',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # AD Authentication
 AUTHENTICATION_BACKENDS = [
-    'django_python3_ldap.auth.LDAPBackend',
+    'ldap.auth.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend'
 ]
 
@@ -119,9 +120,16 @@ LDAP_AUTH_SEARCH_BASE = env.unicode("LDAP_DN")
 LDAP_AUTH_CONNECTION_USERNAME = env.str("LDAP_USERNAME")
 LDAP_AUTH_CONNECTION_PASSWORD = env.str("LDAP_PASSWORD")
 LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "ROCKS"
-LDAP_AUTH_FORMAT_USERNAME = "core.ldap.auth_username_format"
-LDAP_AUTH_ATTRS_IS_MATCHED = "core.ldap.auth_attrs_matched"
-LDAP_AUTH_SYNC_USER_RELATIONS = "core.ldap.auth_sync_user"
+LDAP_AUTH_FORMAT_USERNAME = ldap.utils.auth_username_format
+LDAP_AUTH_ATTRS_IS_MATCHED = ldap.utils.auth_attrs_matched
+LDAP_AUTH_SYNC_USER_RELATIONS = ldap.utils.auth_sync_user
+LDAP_AUTH_USER_FIELDS = {
+    "username": "sAMAccountName",
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail",
+}
+LDAP_AUTH_OBJECT_CLASS = "user"
 
 
 # Internationalization
